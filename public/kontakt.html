@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nove - Kontakt</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Nove</div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/realizacje">Realizacje</a></li>
+            <li><a href="/kontakt" class="active">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="contact">
+            <h1>Kontakt</h1>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Dane kontaktowe</h2>
+                    <p><i class="fas fa-phone"></i> +48 601 316 090</p>
+                    <p><i class="fas fa-envelope"></i> biuro@nove-uslugi-budowlane.pl</p>
+                    <p><i class="fas fa-clock"></i> Pon-Pt: 8:00 - 18:00</p>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Imię i nazwisko</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Rodzaj usługi</label>
+                        <select id="type" name="type" required>
+                            <option value="">Wybierz rodzaj usługi</option>
+                            <option value="budowa">Budowa domu</option>
+                            <option value="remont">Remont</option>
+                            <option value="ogrodzenia">Budowa ogrodzeń</option>
+                            <option value="inne">Inne</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Wyślij zapytanie</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Nove. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,23 @@
+{
+  "name": "nove-budowlana",
+  "version": "1.0.0",
+  "description": "Strona internetowa firmy budowlanej Nove",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "nodemailer": "^6.9.9",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
