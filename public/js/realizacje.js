@@ -18,9 +18,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const projectCard = document.createElement('div');
             projectCard.className = 'project-card';
             
-            // Dodawanie animacji AOS
+            // Dodawanie animacji AOS bez opóźnienia
             projectCard.setAttribute('data-aos', 'fade-up');
-            projectCard.setAttribute('data-aos-delay', (index * 100 + 300).toString());
             
             // Tworzenie sekcji ze zdjęciami
             const projectImages = document.createElement('div');
