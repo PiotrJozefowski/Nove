@@ -6,6 +6,7 @@
     <title>Nove - Firma Budowlana</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <nav class="navbar">
@@ -22,12 +23,10 @@
 
     <main>
         <section class="hero">
-            <h1>Nove - Profesjonalne Usługi Budowlane</h1>
-            <p>Budujemy Twoją przyszłość z pasją i doświadczeniem</p>
-        </section>
-
-        <section class="hero-image">
-            <img src="images/slider/wilanow_01.jpg" alt="Realizacja budowlana">
+            <div class="hero-content">
+                <h1>Nove - Profesjonalne Usługi Budowlane</h1>
+                <p>Budujemy Twoją przyszłość z pasją i doświadczeniem</p>
+            </div>
         </section>
 
         <section class="features">
@@ -59,15 +58,15 @@
                         <p>Od 1998 roku budujemy Twoją przyszłość z pasją i profesjonalizmem. Nasze doświadczenie to ponad 25 lat na rynku budowlanym, podczas których zrealizowaliśmy projekty budynków usługowych, domy jednorodzinne od podstaw oraz kompleksowe wykończenia mieszkań, zadowalając najbardziej wymagających klientów.</p>
                         <p>Specjalizujemy się w kompleksowych usługach budowlanych, od projektowania po finalne wykończenie. Każdy projekt traktujemy jako unikalne wyzwanie, dbając o najwyższą jakość i terminowość realizacji.</p>
                         <div class="experience-highlights">
-                            <div class="highlight">
+                            <div class="highlight" data-aos="zoom-in" data-aos-delay="200">
                                 <i class="fas fa-calendar-check"></i>
                                 <span>25+ lat doświadczenia</span>
                             </div>
-                            <div class="highlight">
+                            <div class="highlight" data-aos="zoom-in" data-aos-delay="300">
                                 <i class="fas fa-building"></i>
                                 <span>Domy jednorodzinne i budynki usługowe</span>
                             </div>
-                            <div class="highlight">
+                            <div class="highlight" data-aos="zoom-in" data-aos-delay="400">
                                 <i class="fas fa-users"></i>
                                 <span>Zadowoleni klienci</span>
                             </div>
@@ -96,5 +95,13 @@
         <p>&copy; 2024 Nove. Wszelkie prawa zastrzeżone.</p>
     </footer>
     <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
 </body>
 </html> 

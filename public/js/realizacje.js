@@ -14,9 +14,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         projectsGrid.innerHTML = '';
         
         // Dodawanie każdej realizacji do strony
-        realizacje.forEach(realizacja => {
+        realizacje.forEach((realizacja, index) => {
             const projectCard = document.createElement('div');
             projectCard.className = 'project-card';
+            
+            // Dodawanie animacji AOS
+            projectCard.setAttribute('data-aos', 'fade-up');
+            projectCard.setAttribute('data-aos-delay', (index * 100 + 300).toString());
             
             // Tworzenie sekcji ze zdjęciami
             const projectImages = document.createElement('div');
@@ -85,6 +89,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     console.error(`Błąd podczas pobierania zdjęć dla realizacji ${realizacja.id}:`, error);
                 });
         });
+        
+        // Odświeżanie animacji AOS po załadowaniu wszystkich realizacji
+        AOS.refresh();
         
         console.log('Realizacje załadowane pomyślnie!');
     } catch (error) {

@@ -66,21 +66,37 @@ main {
 
 /* Hero Section */
 .hero {
+    height: auto;
+    min-height: 200px;
+    padding: 40px 0;
     text-align: center;
-    padding: 2.5rem 2rem;
-    background-color: #f8f9fa;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/slider/wilanow_01.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
     margin: -2rem -2rem 2rem -2rem;
+    width: auto;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
     font-size: 2.5rem;
-    margin-bottom: 0.8rem;
-    color: #2c3e50;
+    margin-bottom: 15px;
+    color: white;
 }
 
 .hero p {
     font-size: 1.1rem;
-    color: #666;
+    margin-bottom: 20px;
+    color: white;
 }
 
 /* Features Section */

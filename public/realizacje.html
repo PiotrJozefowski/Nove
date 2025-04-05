@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nove - Realizacje Budowlane</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -22,8 +23,8 @@
 
     <main>
         <section class="projects">
-            <h1>Nasze Realizacje</h1>
-            <div class="projects-grid">
+            <h1 data-aos="fade-down">Nasze Realizacje</h1>
+            <div class="projects-grid" data-aos="fade-up" data-aos-delay="200">
                 <!-- Realizacje będą ładowane dynamicznie przez JavaScript -->
                 <div class="loading-message">Ładowanie realizacji...</div>
             </div>
@@ -36,5 +37,13 @@
     <script src="js/main.js"></script>
     <script src="js/slider.js"></script>
     <script src="js/realizacje.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html> 
