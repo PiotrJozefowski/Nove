@@ -88,6 +88,11 @@ app.get('/kontakt', (req, res) => {
     res.sendFile(__dirname + '/public/kontakt.html');
 });
 
+// Strona ogrodzeń
+app.get('/ogrodzenia', (req, res) => {
+    res.sendFile(__dirname + '/public/ogrodzenia.html');
+});
+
 // Obsługa formularza kontaktowego
 app.post('/kontakt', async (req, res) => {
     const { name, email, phone, type, message } = req.body;
