@@ -238,6 +238,15 @@ app.get('/api/realizacje/:id/photos', (req, res) => {
     }
 });
 
+// Sitemap i Robots.txt
+app.get('/sitemap.xml', (req, res) => {
+    res.sendFile(__dirname + '/public/sitemap.xml');
+});
+
+app.get('/robots.txt', (req, res) => {
+    res.sendFile(__dirname + '/public/robots.txt');
+});
+
 // Obsługa błędów 404
 app.use((req, res) => {
     res.status(404).sendFile(__dirname + '/public/404.html');
