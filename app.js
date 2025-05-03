@@ -34,6 +34,12 @@ app.use(express.static(path.join(__dirname, 'public'), {
     etag: NODE_ENV === 'production' // Włącz ETag w produkcji
 }));
 
+// Dodatkowy middleware dla folderu realizacje
+app.use('/realizacje', express.static(path.join(__dirname, 'public', 'realizacje'), {
+    maxAge: NODE_ENV === 'production' ? '1d' : 0,
+    etag: NODE_ENV === 'production'
+}));
+
 // Middleware do parsowania JSON
 app.use(express.json());
 
@@ -153,14 +159,20 @@ app.get('/api/realizacje', (req, res) => {
         const realizacje = folders.map(folder => {
             const folderPath = path.join(realizacjeDir, folder);
             const photosPath = path.join(folderPath, 'photos');
-            console.log('Przetwarzanie folderu:', folderPath);
+            console.log(`\nPrzetwarzanie folderu ${folder}:`, folderPath);
+            console.log('Ścieżka do zdjęć:', photosPath);
+            
+            // Sprawdzanie czy folder photos istnieje
+            if (!fs.existsSync(photosPath)) {
+                console.error(`Folder photos nie istnieje dla realizacji ${folder}`);
+                return null;
+            }
             
             // Pobieranie listy zdjęć
             const photos = fs.readdirSync(photosPath)
-                .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
-                .map(file => file);
+                .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
             
-            console.log('Znalezione zdjęcia w folderze:', photos);
+            console.log(`Znalezione zdjęcia w folderze ${folder}:`, photos);
             
             // Pobieranie tytułu z pliku Title.txt
             let title = folder;
@@ -199,9 +211,9 @@ app.get('/api/realizacje', (req, res) => {
                 location,
                 photos
             };
-        });
+        }).filter(Boolean); // Usuwamy null z tablicy
         
-        console.log('Zwracane realizacje:', realizacje);
+        console.log('\nZwracane realizacje:', JSON.stringify(realizacje, null, 2));
         res.json(realizacje);
     } catch (error) {
         console.error('Błąd podczas pobierania realizacji:', error);

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
         const realizacje = await response.json();
+        console.log('Otrzymane dane z API:', realizacje);
         
         // Kontener na realizacje
         const projectsGrid = document.querySelector('.projects-grid');
@@ -117,14 +118,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Dodawanie głównego zdjęcia
             const mainImage = document.createElement('img');
-            mainImage.src = `/realizacje/${realizacja.folder}/photos/${realizacja.photos[0]}`;
+            const mainImagePath = `/realizacje/${realizacja.id}/photos/${realizacja.photos[0]}`;
+            console.log('Ścieżka do głównego zdjęcia:', mainImagePath);
+            mainImage.src = mainImagePath;
             mainImage.alt = realizacja.title;
             projectImages.appendChild(mainImage);
             
             // Dodawanie zdjęcia hover (jeśli istnieje)
             if (realizacja.photos.length > 1) {
                 const hoverImage = document.createElement('img');
-                hoverImage.src = `/realizacje/${realizacja.folder}/photos/${realizacja.photos[1]}`;
+                const hoverImagePath = `/realizacje/${realizacja.id}/photos/${realizacja.photos[1]}`;
+                console.log('Ścieżka do zdjęcia hover:', hoverImagePath);
+                hoverImage.src = hoverImagePath;
                 hoverImage.alt = realizacja.title + ' - widok dodatkowy';
                 hoverImage.className = 'hover-image';
                 projectImages.appendChild(hoverImage);
@@ -192,7 +197,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         popupContent.querySelector('.project-popup-description').textContent = realizacja.content;
                         
                         // Konfiguracja slidera
-                        const photos = realizacja.photos.map(photo => `/realizacje/${realizacja.folder}/photos/${photo}`);
+                        const photos = realizacja.photos.map(photo => `/realizacje/${realizacja.id}/photos/${photo}`);
                         setupSlider(photos);
                         
                         // Wyświetlanie popupu
