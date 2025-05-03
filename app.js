@@ -22,6 +22,12 @@ if (NODE_ENV === 'production') {
     app.enable('verbose errors');
 }
 
+// Middleware do logowania w zależności od środowiska
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
+});
+
 // Middleware do obsługi statycznych plików
 app.use(express.static(path.join(__dirname, 'public'), {
     maxAge: NODE_ENV === 'production' ? '1d' : 0, // Cache statycznych plików w produkcji
@@ -63,14 +69,6 @@ transporter.verify(function(error, success) {
     } else {
         console.log('Serwer SMTP jest gotowy do wysyłania maili');
     }
-});
-
-// Middleware do logowania w zależności od środowiska
-app.use((req, res, next) => {
-    if (NODE_ENV !== 'production') {
-        console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-    }
-    next();
 });
 
 // Główna ścieżka
@@ -135,79 +133,75 @@ app.post('/kontakt', async (req, res) => {
 
 // Endpoint API do pobierania listy realizacji
 app.get('/api/realizacje', (req, res) => {
-    const realizacjeDir = path.join(__dirname, 'public', 'images', 'realizacje');
+    console.log('Pobieranie listy realizacji...');
+    const realizacjeDir = path.join(__dirname, 'public', 'realizacje');
+    console.log('Ścieżka do folderu realizacji:', realizacjeDir);
     
     try {
         // Sprawdzanie, czy folder realizacje istnieje
         if (!fs.existsSync(realizacjeDir)) {
+            console.error('Folder realizacje nie istnieje:', realizacjeDir);
             return res.status(404).json({ error: 'Folder realizacje nie istnieje' });
         }
         
         // Pobieranie listy folderów realizacji
-        const realizacje = fs.readdirSync(realizacjeDir)
-            .filter(item => fs.statSync(path.join(realizacjeDir, item)).isDirectory())
-            .map(folder => {
-                const folderPath = path.join(realizacjeDir, folder);
-                const photosDir = path.join(folderPath, 'photos');
-                
-                // Sprawdzanie, czy folder photos istnieje
-                if (!fs.existsSync(photosDir)) {
-                    console.warn(`Folder photos nie istnieje dla realizacji ${folder}`);
-                    return null;
-                }
-                
-                // Pobieranie listy zdjęć
-                const photos = fs.readdirSync(photosDir)
-                    .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
-                    .map(file => `/images/realizacje/${folder}/photos/${file}`);
-                
-                // Pobieranie głównego zdjęcia (pierwsze z listy)
-                const mainImage = photos.length > 0 ? photos[0] : null;
-                
-                // Pobieranie zdjęcia hover (drugie z listy, jeśli istnieje)
-                const hoverImage = photos.length > 1 ? photos[1] : null;
-                
-                // Pobieranie tytułu z pliku Title.txt
-                let title = folder;
-                const titlePath = path.join(folderPath, 'Title.txt');
-                if (fs.existsSync(titlePath)) {
-                    title = fs.readFileSync(titlePath, 'utf8').trim();
-                }
-                
-                // Pobieranie opisu z pliku Content.txt
-                let content = '';
-                const contentPath = path.join(folderPath, 'Content.txt');
-                if (fs.existsSync(contentPath)) {
-                    content = fs.readFileSync(contentPath, 'utf8').trim();
-                }
-                
-                // Pobieranie roku z pliku Year.txt
-                let year = '';
-                const yearPath = path.join(folderPath, 'Year.txt');
-                if (fs.existsSync(yearPath)) {
-                    year = fs.readFileSync(yearPath, 'utf8').trim();
-                }
-                
-                // Pobieranie lokalizacji z pliku Location.txt
-                let location = '';
-                const locationPath = path.join(folderPath, 'Location.txt');
-                if (fs.existsSync(locationPath)) {
-                    location = fs.readFileSync(locationPath, 'utf8').trim();
-                }
-                
-                return {
-                    id: folder,
-                    title,
-                    content,
-                    year,
-                    location,
-                    mainImage,
-                    hoverImage,
-                    photos
-                };
-            })
-            .filter(realizacja => realizacja !== null);
+        const folders = fs.readdirSync(realizacjeDir)
+            .filter(item => fs.statSync(path.join(realizacjeDir, item)).isDirectory());
         
+        console.log('Znalezione foldery realizacji:', folders);
+        
+        const realizacje = folders.map(folder => {
+            const folderPath = path.join(realizacjeDir, folder);
+            const photosPath = path.join(folderPath, 'photos');
+            console.log('Przetwarzanie folderu:', folderPath);
+            
+            // Pobieranie listy zdjęć
+            const photos = fs.readdirSync(photosPath)
+                .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
+                .map(file => file);
+            
+            console.log('Znalezione zdjęcia w folderze:', photos);
+            
+            // Pobieranie tytułu z pliku Title.txt
+            let title = folder;
+            const titlePath = path.join(folderPath, 'Title.txt');
+            if (fs.existsSync(titlePath)) {
+                title = fs.readFileSync(titlePath, 'utf8').trim();
+            }
+            
+            // Pobieranie opisu z pliku Content.txt
+            let content = '';
+            const contentPath = path.join(folderPath, 'Content.txt');
+            if (fs.existsSync(contentPath)) {
+                content = fs.readFileSync(contentPath, 'utf8').trim();
+            }
+            
+            // Pobieranie roku z pliku Year.txt
+            let year = '';
+            const yearPath = path.join(folderPath, 'Year.txt');
+            if (fs.existsSync(yearPath)) {
+                year = fs.readFileSync(yearPath, 'utf8').trim();
+            }
+            
+            // Pobieranie lokalizacji z pliku Location.txt
+            let location = '';
+            const locationPath = path.join(folderPath, 'Location.txt');
+            if (fs.existsSync(locationPath)) {
+                location = fs.readFileSync(locationPath, 'utf8').trim();
+            }
+            
+            return {
+                id: folder,
+                folder: folder,
+                title,
+                content,
+                year,
+                location,
+                photos
+            };
+        });
+        
+        console.log('Zwracane realizacje:', realizacje);
         res.json(realizacje);
     } catch (error) {
         console.error('Błąd podczas pobierania realizacji:', error);
@@ -217,24 +211,21 @@ app.get('/api/realizacje', (req, res) => {
 
 // Endpoint API do pobierania zdjęć dla danej realizacji
 app.get('/api/realizacje/:id/photos', (req, res) => {
-    const realizacjaId = req.params.id;
-    const photosDir = path.join(__dirname, 'public', 'images', 'realizacje', realizacjaId, 'photos');
+    const folderPath = path.join(__dirname, 'public', 'realizacje', req.params.id);
     
     try {
-        // Sprawdzanie, czy folder photos istnieje
-        if (!fs.existsSync(photosDir)) {
-            return res.status(404).json({ error: 'Folder ze zdjęciami nie istnieje' });
+        if (!fs.existsSync(folderPath)) {
+            return res.status(404).json({ error: 'Realizacja nie znaleziona' });
         }
-        
-        // Pobieranie listy zdjęć
-        const photos = fs.readdirSync(photosDir)
+
+        const photos = fs.readdirSync(folderPath)
             .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
-            .map(file => `/images/realizacje/${realizacjaId}/photos/${file}`);
+            .map(file => `/realizacje/${req.params.id}/${file}`);
         
         res.json(photos);
     } catch (error) {
-        console.error(`Błąd podczas pobierania zdjęć dla realizacji ${realizacjaId}:`, error);
-        res.status(500).json({ error: 'Błąd podczas pobierania zdjęć' });
+        console.error('Błąd podczas odczytu zdjęć:', error);
+        res.status(500).json({ error: 'Błąd serwera' });
     }
 });
 
@@ -248,24 +239,14 @@ app.get('/robots.txt', (req, res) => {
 });
 
 // Obsługa błędów 404
-app.use((req, res) => {
+app.use((req, res, next) => {
     res.status(404).sendFile(__dirname + '/public/404.html');
 });
 
 // Obsługa błędów
 app.use((err, req, res, next) => {
-    // Logowanie błędu w zależności od środowiska
-    if (NODE_ENV !== 'production') {
-        console.error(err.stack);
-    }
-
-    // Odpowiedź z błędem
-    res.status(500).json({ 
-        success: false, 
-        message: NODE_ENV === 'production' 
-            ? 'Wystąpił błąd serwera. Spróbuj ponownie później.' 
-            : err.message 
-    });
+    console.error(err.stack);
+    res.status(500).send('Coś poszło nie tak!');
 });
 
 // Uruchomienie serwera

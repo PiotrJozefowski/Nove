@@ -1,10 +1,13 @@
 // Funkcja do ładowania realizacji
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('Ładowanie realizacji...');
-    
     try {
         // Pobieranie listy realizacji z serwera
         const response = await fetch('/api/realizacje');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const realizacje = await response.json();
         
         // Kontener na realizacje
@@ -12,6 +15,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Czyszczenie kontenera
         projectsGrid.innerHTML = '';
+        
+        if (!realizacje || realizacje.length === 0) {
+            projectsGrid.innerHTML = '<p class="error-message">Brak dostępnych realizacji.</p>';
+            return;
+        }
         
         // Tworzenie popupu
         const popup = document.createElement('div');
@@ -101,6 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const projectCard = document.createElement('div');
             projectCard.className = 'project-card';
             projectCard.setAttribute('data-aos', 'fade-up');
+            projectCard.setAttribute('data-aos-delay', `${index * 100}`);
             
             // Tworzenie sekcji ze zdjęciami
             const projectImages = document.createElement('div');
@@ -108,14 +117,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Dodawanie głównego zdjęcia
             const mainImage = document.createElement('img');
-            mainImage.src = realizacja.mainImage;
+            mainImage.src = `/realizacje/${realizacja.folder}/photos/${realizacja.photos[0]}`;
             mainImage.alt = realizacja.title;
             projectImages.appendChild(mainImage);
             
             // Dodawanie zdjęcia hover (jeśli istnieje)
-            if (realizacja.hoverImage) {
+            if (realizacja.photos.length > 1) {
                 const hoverImage = document.createElement('img');
-                hoverImage.src = realizacja.hoverImage;
+                hoverImage.src = `/realizacje/${realizacja.folder}/photos/${realizacja.photos[1]}`;
                 hoverImage.alt = realizacja.title + ' - widok dodatkowy';
                 hoverImage.className = 'hover-image';
                 projectImages.appendChild(hoverImage);
@@ -177,6 +186,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         popupContent.querySelector('.project-popup-description').textContent = realizacja.content;
                         
                         // Konfiguracja slidera
+                        const photos = realizacja.photos.map(photo => `/realizacje/${realizacja.folder}/photos/${photo}`);
                         setupSlider(photos);
                         
                         // Wyświetlanie popupu
@@ -191,10 +201,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Odświeżanie animacji AOS po załadowaniu wszystkich realizacji
         AOS.refresh();
-        
-        console.log('Realizacje załadowane pomyślnie!');
     } catch (error) {
-        console.error('Błąd podczas ładowania realizacji:', error);
         const projectsGrid = document.querySelector('.projects-grid');
         projectsGrid.innerHTML = '<p class="error-message">Wystąpił błąd podczas ładowania realizacji. Spróbuj ponownie później.</p>';
     }
