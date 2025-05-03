@@ -13,12 +13,93 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Czyszczenie kontenera
         projectsGrid.innerHTML = '';
         
+        // Tworzenie popupu
+        const popup = document.createElement('div');
+        popup.className = 'project-popup';
+        popup.innerHTML = `
+            <div class="project-popup-content">
+                <div class="project-popup-header">
+                    <h2></h2>
+                    <button class="project-popup-close" title="Zamknij">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="project-popup-body">
+                    <div class="project-popup-info">
+                        <div class="project-popup-details"></div>
+                        <div class="project-popup-description"></div>
+                    </div>
+                    <div class="project-popup-slider">
+                        <div class="slider-image-container">
+                            <img class="slider-image" src="" alt="">
+                            <button class="slider-prev" title="Poprzednie">&lt;</button>
+                            <button class="slider-next" title="Następne">&gt;</button>
+                            <div class="slider-counter"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(popup);
+        
+        // Obsługa zamykania popupu
+        const closePopup = () => {
+            popup.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+        
+        popup.querySelector('.project-popup-close').addEventListener('click', closePopup);
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) closePopup();
+        });
+        
+        // Funkcja do obsługi slidera
+        const setupSlider = (photos) => {
+            let currentIndex = 0;
+            const image = popup.querySelector('.slider-image');
+            const counter = popup.querySelector('.slider-counter');
+            const prevButton = popup.querySelector('.slider-prev');
+            const nextButton = popup.querySelector('.slider-next');
+            
+            const updateImage = () => {
+                image.src = photos[currentIndex];
+                counter.textContent = `${currentIndex + 1} / ${photos.length}`;
+            };
+            
+            // Obsługa kliknięcia w zdjęcie
+            image.addEventListener('click', () => {
+                closePopup();
+                window.openSlider(photos, currentIndex);
+            });
+            
+            prevButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+                updateImage();
+            });
+            
+            nextButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % photos.length;
+                updateImage();
+            });
+            
+            // Obsługa klawiszy
+            document.addEventListener('keydown', (e) => {
+                if (popup.style.display === 'flex') {
+                    if (e.key === 'ArrowLeft') prevButton.click();
+                    if (e.key === 'ArrowRight') nextButton.click();
+                    if (e.key === 'Escape') closePopup();
+                }
+            });
+            
+            updateImage();
+        };
+        
         // Dodawanie każdej realizacji do strony
         realizacje.forEach((realizacja, index) => {
             const projectCard = document.createElement('div');
             projectCard.className = 'project-card';
-            
-            // Dodawanie animacji AOS bez opóźnienia
             projectCard.setAttribute('data-aos', 'fade-up');
             
             // Tworzenie sekcji ze zdjęciami
@@ -78,10 +159,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetch(`/api/realizacje/${realizacja.id}/photos`)
                 .then(response => response.json())
                 .then(photos => {
-                    // Dodawanie obsługi kliknięcia w zdjęcie
-                    projectImages.addEventListener('click', () => {
-                        // Otwieranie slidera z wszystkimi zdjęciami
-                        window.openSlider(photos, 0);
+                    // Obsługa kliknięcia w kartę projektu
+                    projectCard.addEventListener('click', () => {
+                        // Wypełnianie popupu danymi
+                        const popupContent = popup.querySelector('.project-popup-content');
+                        popupContent.querySelector('h2').textContent = realizacja.title;
+                        
+                        const popupDetails = popupContent.querySelector('.project-popup-details');
+                        popupDetails.innerHTML = '';
+                        if (realizacja.year) {
+                            popupDetails.innerHTML += `<span><i class="fas fa-calendar"></i> ${realizacja.year}</span>`;
+                        }
+                        if (realizacja.location) {
+                            popupDetails.innerHTML += `<span><i class="fas fa-map-marker-alt"></i> ${realizacja.location}</span>`;
+                        }
+                        
+                        popupContent.querySelector('.project-popup-description').textContent = realizacja.content;
+                        
+                        // Konfiguracja slidera
+                        setupSlider(photos);
+                        
+                        // Wyświetlanie popupu
+                        popup.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
                     });
                 })
                 .catch(error => {
@@ -95,7 +195,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Realizacje załadowane pomyślnie!');
     } catch (error) {
         console.error('Błąd podczas ładowania realizacji:', error);
-        // Wyświetlanie komunikatu o błędzie
         const projectsGrid = document.querySelector('.projects-grid');
         projectsGrid.innerHTML = '<p class="error-message">Wystąpił błąd podczas ładowania realizacji. Spróbuj ponownie później.</p>';
     }
