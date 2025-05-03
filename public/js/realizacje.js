@@ -144,14 +144,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Dodawanie roku (jeśli istnieje)
             if (realizacja.year) {
                 const yearSpan = document.createElement('span');
-                yearSpan.innerHTML = `<i class="fas fa-calendar"></i> ${realizacja.year}`;
+                const yearIcon = document.createElement('i');
+                yearIcon.className = 'fas fa-calendar';
+                yearSpan.appendChild(yearIcon);
+                yearSpan.appendChild(document.createTextNode(` ${realizacja.year}`));
                 projectDetails.appendChild(yearSpan);
             }
             
             // Dodawanie lokalizacji (jeśli istnieje)
             if (realizacja.location) {
                 const locationSpan = document.createElement('span');
-                locationSpan.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${realizacja.location}`;
+                const locationIcon = document.createElement('i');
+                locationIcon.className = 'fas fa-map-marker-alt';
+                locationSpan.appendChild(locationIcon);
+                locationSpan.appendChild(document.createTextNode(` ${realizacja.location}`));
                 projectDetails.appendChild(locationSpan);
             }
             

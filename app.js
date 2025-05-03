@@ -211,16 +211,16 @@ app.get('/api/realizacje', (req, res) => {
 
 // Endpoint API do pobierania zdjęć dla danej realizacji
 app.get('/api/realizacje/:id/photos', (req, res) => {
-    const folderPath = path.join(__dirname, 'public', 'realizacje', req.params.id);
+    const photosPath = path.join(__dirname, 'public', 'realizacje', req.params.id, 'photos');
     
     try {
-        if (!fs.existsSync(folderPath)) {
-            return res.status(404).json({ error: 'Realizacja nie znaleziona' });
+        if (!fs.existsSync(photosPath)) {
+            return res.status(404).json({ error: 'Folder ze zdjęciami nie znaleziony' });
         }
 
-        const photos = fs.readdirSync(folderPath)
+        const photos = fs.readdirSync(photosPath)
             .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
-            .map(file => `/realizacje/${req.params.id}/${file}`);
+            .map(file => `/realizacje/${req.params.id}/photos/${file}`);
         
         res.json(photos);
     } catch (error) {
