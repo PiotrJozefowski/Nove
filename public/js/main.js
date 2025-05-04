@@ -1,7 +1,5 @@
 // Czekamy na załadowanie dokumentu
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Strona została załadowana!');
-    
     // Przykładowa funkcja
     function powitanie() {
         const header = document.querySelector('header h1');
