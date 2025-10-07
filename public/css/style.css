@@ -153,6 +153,9 @@ main {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-card {
@@ -168,6 +171,8 @@ main {
     display: flex;
     flex-direction: column;
     border: 1px solid #e0e0e0;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .project-card:hover {
