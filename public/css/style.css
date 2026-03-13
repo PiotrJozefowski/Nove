@@ -291,6 +291,10 @@ main {
 
 /* Realizacja Page */
 
+.realizacja-content {
+    overflow-x: hidden;
+}
+
 .realizacja-loading {
     text-align: center;
     padding: 6rem 2rem;
@@ -306,6 +310,7 @@ main {
     background-position: center;
     background-color: #1a1a1a;
     margin: -2rem -2rem 0 -2rem;
+    width: calc(100% + 4rem);
     display: flex;
     align-items: flex-end;
 }
@@ -376,7 +381,7 @@ main {
 .realizacja-detail {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2.5rem 0;
+    padding: 2.5rem 1rem;
 }
 
 .realizacja-layout {
@@ -389,6 +394,7 @@ main {
 /* Gallery */
 .realizacja-gallery {
     width: 100%;
+    min-width: 0;
 }
 
 .realizacja-main-photo {
@@ -531,6 +537,7 @@ main {
     gap: 1.2rem;
     position: sticky;
     top: 100px;
+    min-width: 0;
 }
 
 .realizacja-info-card {
@@ -563,6 +570,8 @@ main {
     line-height: 1.7;
     color: #555;
     white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Details card */
@@ -653,16 +662,18 @@ main {
 
 @media (max-width: 768px) {
     .realizacja-hero-section {
-        min-height: 240px;
+        min-height: 200px;
         margin: -1rem -1rem 0 -1rem;
+        width: calc(100% + 2rem);
     }
 
     .realizacja-hero-inner {
-        padding: 1.5rem 1rem 2rem;
+        padding: 1.5rem 1.5rem 1.5rem;
     }
 
     .realizacja-title {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        word-break: break-word;
     }
 
     .realizacja-meta {
@@ -672,24 +683,32 @@ main {
     }
 
     .realizacja-detail {
-        padding: 1.5rem 0;
+        padding: 1.5rem 0.5rem;
+    }
+
+    .realizacja-layout {
+        gap: 1.5rem;
     }
 
     .realizacja-main-photo {
-        height: 280px;
-        border-radius: 10px;
+        height: 250px;
+        border-radius: 8px;
     }
 
     .realizacja-thumbnails .thumb {
-        width: 64px;
-        height: 46px;
+        width: 60px;
+        height: 44px;
     }
 
     .realizacja-main-photo .gallery-prev,
     .realizacja-main-photo .gallery-next {
-        width: 36px;
-        height: 36px;
-        font-size: 13px;
+        width: 34px;
+        height: 34px;
+        font-size: 12px;
+    }
+
+    .realizacja-info-card {
+        padding: 1.2rem;
     }
 
     .gallery-zoom-hint {
