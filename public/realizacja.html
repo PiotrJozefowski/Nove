@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <meta name="description" content="Realizacja budowlana - Nove Usługi Budowlane Warszawa">
+    <meta name="author" content="Nove - Firma Budowlana Warszawa">
+    <title>Realizacja | Nove</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Nove</div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/realizacje" class="active">Realizacje</a></li>
+            <li><a href="/ogrodzenia">Ogrodzenia</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="realizacja-loading">Ładowanie realizacji...</div>
+
+        <div class="realizacja-content" style="display: none;">
+            <section class="realizacja-hero-section">
+                <div class="realizacja-hero-overlay"></div>
+                <div class="realizacja-hero-inner">
+                    <a href="/realizacje" class="realizacja-back" data-aos="fade-right">
+                        <i class="fas fa-arrow-left"></i> Wszystkie realizacje
+                    </a>
+                    <h1 class="realizacja-title" data-aos="fade-up"></h1>
+                    <div class="realizacja-meta" data-aos="fade-up" data-aos-delay="100">
+                        <span class="realizacja-year"><i class="fas fa-calendar-alt"></i> <span></span></span>
+                        <span class="realizacja-location"><i class="fas fa-map-marker-alt"></i> <span></span></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="realizacja-detail" data-aos="fade-up" data-aos-delay="200">
+                <div class="realizacja-layout">
+                    <div class="realizacja-gallery">
+                        <div class="realizacja-main-photo">
+                            <img src="" alt="" class="realizacja-hero-img">
+                            <button class="gallery-prev" title="Poprzednie"><i class="fas fa-chevron-left"></i></button>
+                            <button class="gallery-next" title="Następne"><i class="fas fa-chevron-right"></i></button>
+                            <div class="gallery-counter"></div>
+                            <div class="gallery-zoom-hint"><i class="fas fa-expand"></i> Kliknij aby powiększyć</div>
+                        </div>
+                        <div class="realizacja-thumbnails"></div>
+                    </div>
+
+                    <aside class="realizacja-sidebar">
+                        <div class="realizacja-info-card">
+                            <h2>O projekcie</h2>
+                            <div class="realizacja-description"></div>
+                        </div>
+                        <div class="realizacja-info-card realizacja-details-card">
+                            <h3>Szczegóły</h3>
+                            <div class="realizacja-detail-row realizacja-detail-year">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div>
+                                    <span class="detail-label">Rok realizacji</span>
+                                    <span class="detail-value"></span>
+                                </div>
+                            </div>
+                            <div class="realizacja-detail-row realizacja-detail-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <span class="detail-label">Lokalizacja</span>
+                                    <span class="detail-value"></span>
+                                </div>
+                            </div>
+                            <div class="realizacja-detail-row">
+                                <i class="fas fa-images"></i>
+                                <div>
+                                    <span class="detail-label">Zdjęcia</span>
+                                    <span class="detail-value realizacja-photo-count"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/kontakt" class="realizacja-cta">
+                            <i class="fas fa-envelope"></i> Zapytaj o podobny projekt
+                        </a>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Nove. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+    <script src="/js/main.js"></script>
+    <script src="/js/realizacja.js"></script>
+    <script src="/js/slider.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html>

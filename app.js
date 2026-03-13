@@ -30,14 +30,16 @@ app.use((req, res, next) => {
 
 // Middleware do obsługi statycznych plików
 app.use(express.static(path.join(__dirname, 'public'), {
-    maxAge: NODE_ENV === 'production' ? '1d' : 0, // Cache statycznych plików w produkcji
-    etag: NODE_ENV === 'production' // Włącz ETag w produkcji
+    maxAge: NODE_ENV === 'production' ? '1d' : 0,
+    etag: NODE_ENV === 'production',
+    redirect: false
 }));
 
 // Dodatkowy middleware dla folderu realizacje
 app.use('/realizacje', express.static(path.join(__dirname, 'public', 'realizacje'), {
     maxAge: NODE_ENV === 'production' ? '1d' : 0,
-    etag: NODE_ENV === 'production'
+    etag: NODE_ENV === 'production',
+    redirect: false
 }));
 
 // Middleware do parsowania JSON
@@ -85,6 +87,15 @@ app.get('/', (req, res) => {
 // Strona realizacji
 app.get('/realizacje', (req, res) => {
     res.sendFile(__dirname + '/public/realizacje.html');
+});
+
+// Strona pojedynczej realizacji
+app.get('/realizacje/:id', (req, res) => {
+    const realizacjaDir = path.join(__dirname, 'public', 'realizacje', req.params.id);
+    if (!fs.existsSync(realizacjaDir) || !fs.statSync(realizacjaDir).isDirectory()) {
+        return res.status(404).sendFile(__dirname + '/public/404.html');
+    }
+    res.sendFile(__dirname + '/public/realizacja.html');
 });
 
 // Strona kontaktowa
@@ -218,6 +229,41 @@ app.get('/api/realizacje', (req, res) => {
     } catch (error) {
         console.error('Błąd podczas pobierania realizacji:', error);
         res.status(500).json({ error: 'Błąd podczas pobierania realizacji' });
+    }
+});
+
+// Endpoint API do pobierania pojedynczej realizacji
+app.get('/api/realizacje/:id', (req, res) => {
+    const realizacjaDir = path.join(__dirname, 'public', 'realizacje', req.params.id);
+    
+    try {
+        if (!fs.existsSync(realizacjaDir)) {
+            return res.status(404).json({ error: 'Realizacja nie znaleziona' });
+        }
+        
+        const photosPath = path.join(realizacjaDir, 'photos');
+        let photos = [];
+        if (fs.existsSync(photosPath)) {
+            photos = fs.readdirSync(photosPath)
+                .filter(file => /\.(jpg|jpeg|png)$/i.test(file));
+        }
+        
+        const readFile = (filename) => {
+            const filePath = path.join(realizacjaDir, filename);
+            return fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8').trim() : '';
+        };
+        
+        res.json({
+            id: req.params.id,
+            title: readFile('Title.txt') || req.params.id,
+            content: readFile('Content.txt'),
+            year: readFile('Year.txt'),
+            location: readFile('Location.txt'),
+            photos
+        });
+    } catch (error) {
+        console.error('Błąd podczas pobierania realizacji:', error);
+        res.status(500).json({ error: 'Błąd serwera' });
     }
 });
 
