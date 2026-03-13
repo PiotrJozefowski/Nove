@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://nove-uslugi-budowlane.pl/sitemap.xml 
+Disallow: /api/
+Sitemap: https://nove-uslugi-budowlane.pl/sitemap.xml
