@@ -1,28 +1,40 @@
 // Czekamy na załadowanie dokumentu
 document.addEventListener('DOMContentLoaded', () => {
-    // Przykładowa funkcja
-    function powitanie() {
-        const header = document.querySelector('header h1');
-        if (header) {
-            header.textContent = 'Witaj na mojej stronie!';
-        }
+    // Efekt navbara przy przewijaniu
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 20);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
     }
-    
-    // Wywołanie funkcji
-    powitanie();
 
     // Obsługa menu mobilnego
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    if (menuToggle && navLinks) {
+        const toggleMenu = () => {
+            const open = navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('open', open);
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        menuToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
+    }
 
     // Zamykanie menu po kliknięciu w link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     });
 

@@ -17,20 +17,42 @@
     <meta property="og:description" content="Poznaj nasze realizacje budowlane w Warszawie i okolicach. Galeria projektów ogrodzeń i kompleksowych realizacji budowlanych.">
     <meta property="og:image" content="https://nove-uslugi-budowlane.pl/images/general/IMG_4346-scaled.jpg">
     <meta property="og:url" content="https://nove-uslugi-budowlane.pl/realizacje">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Nove - Usługi Budowlane">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Realizacje Budowlane Warszawa | Nove">
+    <meta name="twitter:description" content="Galeria naszych realizacji budowlanych w Warszawie i okolicach — domy, budynki usługowe, remonty i ogrodzenia.">
+    <meta name="twitter:image" content="https://nove-uslugi-budowlane.pl/images/general/IMG_4346-scaled.jpg">
+    <meta name="theme-color" content="#0a0a0b">
+    <meta name="robots" content="index, follow">
     <title>Realizacje Budowlane Warszawa | Nove - Galeria Projektów</title>
+    <link rel="preload" as="image" href="/images/general/IMG_4346-scaled.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nove-uslugi-budowlane.pl/" },
+            { "@type": "ListItem", "position": 2, "name": "Realizacje", "item": "https://nove-uslugi-budowlane.pl/realizacje" }
+        ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">Nove</div>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
+        <div class="menu-toggle" role="button" tabindex="0" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav-links">
+            <i class="fas fa-bars" aria-hidden="true"></i>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/realizacje" class="active">Realizacje</a></li>
             <li><a href="/ogrodzenia">Ogrodzenia</a></li>
@@ -41,8 +63,9 @@
     <main>
         <section class="hero hero-realizacje">
             <div class="hero-content">
-                <h1>Nasze Realizacje</h1>
-                <p>Poznaj projekty, które zrealizowaliśmy z pasją i dbałością o każdy detal</p>
+                <span class="hero-eyebrow" data-aos="fade-up"><i class="fas fa-images"></i> Portfolio</span>
+                <h1 data-aos="fade-up" data-aos-delay="80">Nasze <span class="accent">Realizacje</span></h1>
+                <p data-aos="fade-up" data-aos-delay="160">Poznaj projekty, które zrealizowaliśmy z pasją i dbałością o każdy detal.</p>
             </div>
         </section>
 
@@ -54,7 +77,19 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Nove. Wszelkie prawa zastrzeżone.</p>
+        <div class="footer-brand">Nove</div>
+        <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/realizacje">Realizacje</a></li>
+            <li><a href="/ogrodzenia">Ogrodzenia</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+        <div class="footer-contact">
+            <a href="tel:+48601316090"><i class="fas fa-phone"></i>+48 601 316 090</a>
+            <a href="mailto:biuro@nove-uslugi-budowlane.pl"><i class="fas fa-envelope"></i>biuro@nove-uslugi-budowlane.pl</a>
+            <span><i class="fas fa-map-marker-alt"></i>Warszawa i okolice</span>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Nove — Usługi Budowlane. Wszelkie prawa zastrzeżone.</div>
     </footer>
     <script src="/js/main.js"></script>
     <script src="/js/realizacje.js"></script>

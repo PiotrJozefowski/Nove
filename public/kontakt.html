@@ -17,18 +17,39 @@
     <meta property="og:description" content="Skontaktuj się z nami - profesjonalna firma budowlana w Warszawie. Bezpłatna wycena i konsultacja dla Twojego projektu.">
     <meta property="og:image" content="https://nove-uslugi-budowlane.pl/images/general/IMG_4346-scaled.jpg">
     <meta property="og:url" content="https://nove-uslugi-budowlane.pl/kontakt">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Nove - Usługi Budowlane">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kontakt - Nove Firma Budowlana Warszawa">
+    <meta name="twitter:description" content="Skontaktuj się z Nove — profesjonalną firmą budowlaną w Warszawie. Bezpłatna wycena i konsultacja.">
+    <meta name="twitter:image" content="https://nove-uslugi-budowlane.pl/images/general/IMG_4346-scaled.jpg">
+    <meta name="theme-color" content="#0a0a0b">
+    <meta name="robots" content="index, follow">
     <title>Kontakt - Nove Firma Budowlana Warszawa | Bezpłatna Wycena</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nove-uslugi-budowlane.pl/" },
+            { "@type": "ListItem", "position": 2, "name": "Kontakt", "item": "https://nove-uslugi-budowlane.pl/kontakt" }
+        ]
+    }
+    </script>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">Nove</div>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
+        <div class="menu-toggle" role="button" tabindex="0" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav-links">
+            <i class="fas fa-bars" aria-hidden="true"></i>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/realizacje">Realizacje</a></li>
             <li><a href="/ogrodzenia">Ogrodzenia</a></li>
@@ -39,6 +60,7 @@
     <main>
         <section class="contact">
             <h1>Kontakt</h1>
+            <p class="contact-intro">Masz pytanie lub chcesz omówić projekt? Napisz do nas — odpowiemy z bezpłatną wyceną i konsultacją.</p>
             <div class="contact-container">
                 <div class="contact-info">
                     <h2>Dane kontaktowe</h2>
@@ -80,7 +102,19 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Nove. Wszelkie prawa zastrzeżone.</p>
+        <div class="footer-brand">Nove</div>
+        <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/realizacje">Realizacje</a></li>
+            <li><a href="/ogrodzenia">Ogrodzenia</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+        <div class="footer-contact">
+            <a href="tel:+48601316090"><i class="fas fa-phone"></i>+48 601 316 090</a>
+            <a href="mailto:biuro@nove-uslugi-budowlane.pl"><i class="fas fa-envelope"></i>biuro@nove-uslugi-budowlane.pl</a>
+            <span><i class="fas fa-map-marker-alt"></i>Warszawa i okolice</span>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Nove — Usługi Budowlane. Wszelkie prawa zastrzeżone.</div>
     </footer>
     <script src="/js/main.js"></script>
 </body>

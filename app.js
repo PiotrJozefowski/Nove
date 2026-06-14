@@ -119,7 +119,7 @@ app.get('/realizacje/:id', (req, res) => {
         .replace('<title>Realizacja | Nove</title>', `<title>${title} | Nove</title>`)
         .replace(
             '<meta name="description" content="Realizacja budowlana - Nove Usługi Budowlane Warszawa">',
-            `<meta name="description" content="${description}">\n    <link rel="canonical" href="${baseUrl}/realizacje/${id}">\n    <meta property="og:type" content="article">\n    <meta property="og:title" content="${title} | Nove">\n    <meta property="og:description" content="${description}">\n    <meta property="og:image" content="${ogImage}">\n    <meta property="og:url" content="${baseUrl}/realizacje/${id}">`
+            `<meta name="description" content="${description}">\n    <link rel="canonical" href="${baseUrl}/realizacje/${id}">\n    <meta property="og:type" content="article">\n    <meta property="og:title" content="${title} | Nove">\n    <meta property="og:description" content="${description}">\n    <meta property="og:image" content="${ogImage}">\n    <meta property="og:url" content="${baseUrl}/realizacje/${id}">\n    <meta name="twitter:title" content="${title} | Nove">\n    <meta name="twitter:description" content="${description}">\n    <meta name="twitter:image" content="${ogImage}">\n    <link rel="preload" as="image" href="${ogImage}" fetchpriority="high">`
         );
 
     res.send(html);
@@ -318,15 +318,21 @@ app.get('/api/realizacje/:id/photos', (req, res) => {
 app.get('/sitemap.xml', (req, res) => {
     const baseUrl = 'https://nove-uslugi-budowlane.pl';
     const realizacjeDir = path.join(__dirname, 'public', 'realizacje');
+    const today = new Date().toISOString().split('T')[0];
     let realizacjeUrls = '';
 
     if (fs.existsSync(realizacjeDir)) {
         const folders = fs.readdirSync(realizacjeDir)
             .filter(f => fs.statSync(path.join(realizacjeDir, f)).isDirectory());
         folders.forEach(id => {
+            let lastmod = today;
+            try {
+                lastmod = fs.statSync(path.join(realizacjeDir, id)).mtime.toISOString().split('T')[0];
+            } catch (e) { /* fallback do dzisiejszej daty */ }
             realizacjeUrls += `
     <url>
         <loc>${baseUrl}/realizacje/${id}</loc>
+        <lastmod>${lastmod}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>`;
@@ -337,21 +343,25 @@ app.get('/sitemap.xml', (req, res) => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>${baseUrl}/</loc>
+        <lastmod>${today}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>${baseUrl}/realizacje</loc>
+        <lastmod>${today}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>${baseUrl}/ogrodzenia</loc>
+        <lastmod>${today}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>${baseUrl}/kontakt</loc>
+        <lastmod>${today}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>${realizacjeUrls}
