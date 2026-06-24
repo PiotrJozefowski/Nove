@@ -8,13 +8,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch(`/api/realizacje/${realizacjaId}`);
+        const response = await fetch('/data/realizacje.json');
         if (!response.ok) {
             window.location.href = '/realizacje';
             return;
         }
 
-        const realizacja = await response.json();
+        const all = await response.json();
+        const realizacja = all.find(r => r.id === realizacjaId);
+        if (!realizacja) {
+            window.location.href = '/realizacje';
+            return;
+        }
 
         document.title = `${realizacja.title} | Nove`;
         const metaDesc = document.querySelector('meta[name="description"]');

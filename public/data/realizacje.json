@@ -1,0 +1,161 @@
+[
+  {
+    "id": "janki",
+    "title": "Hala z pomieszczeniami biurowymi",
+    "content": "Budowa nowoczesnej hali przemysłowej z pomieszczeniami biurowymi w Jankach. Projekt obejmował kompleksową budowę obiektu o powierzchni 1200m², w tym 800m² powierzchni produkcyjnej i 400m² powierzchni biurowej. Realizacja została wykonana zgodnie z najnowszymi standardami energooszczędności i bezpieczeństwa.",
+    "year": "2023",
+    "location": "Janki, Warszawa",
+    "photos": [
+      "DSCF1584-scaled.jpg",
+      "DSCF1609-scaled.jpg",
+      "DSCF2118-scaled.jpg",
+      "DSCF4063.jpg",
+      "DSCF4064.jpg",
+      "IMG_2402-scaled.jpg",
+      "IMG_3097-scaled.jpg"
+    ]
+  },
+  {
+    "id": "mieszkanie_01",
+    "title": "Mieszkanie - Warszawa",
+    "content": "Kompleksowy remont mieszkania o powierzchni 85m² w centrum Warszawy. Projekt obejmował modernizację kuchni, łazienek oraz przestrzeni dziennej. Wykonano również wymianę instalacji elektrycznej i hydraulicznej oraz odświeżenie całego wnętrza w nowoczesnym stylu.",
+    "year": "2023",
+    "location": "Centrum, Warszawa",
+    "photos": [
+      "IMG-20240421-WA0031.jpg",
+      "IMG-20240421-WA0036.jpg",
+      "IMG-20240421-WA0037.jpg",
+      "IMG-20240421-WA0038.jpg",
+      "IMG-20240421-WA0040.jpg",
+      "IMG-20240421-WA0041.jpg",
+      "IMG-20240421-WA0042.jpg",
+      "IMG-20240421-WA0043.jpg",
+      "IMG-20240421-WA0044.jpg",
+      "IMG-20240421-WA0045.jpg"
+    ]
+  },
+  {
+    "id": "mieszkanie_02",
+    "title": "Mieszkanie - Warszawa",
+    "content": "Wykończenie mieszkania w Warszawie 02.\n\nModernizacja mieszkania o powierzchni 65m² na Mokotowie w Warszawie. Projekt obejmował przebudowę układu funkcjonalnego, wymianę instalacji oraz wykończenie wnętrz w nowoczesnym stylu. Wykonano również remont łazienek i kuchni oraz odświeżenie przestrzeni dziennej.",
+    "year": "2022",
+    "location": "Mokotów, Warszawa",
+    "photos": [
+      "20230929_165243-scaled.jpg",
+      "20230929_165312-scaled.jpg",
+      "20230929_165442-scaled.jpg",
+      "20231001_122018-scaled.jpg",
+      "20231001_122033-scaled.jpg",
+      "20231001_122208-scaled.jpg",
+      "IMG_20230614_081111-scaled.jpg",
+      "IMG_20230614_081135-scaled.jpg",
+      "IMG_20230616_113413-scaled.jpg"
+    ]
+  },
+  {
+    "id": "mokotow_mieszkanie",
+    "title": "Mieszkanie Mokotów",
+    "content": "Prezentowane wnętrze to efekt generalnego remontu mieszkania o powierzchni 56m2, obejmującego pełną wymianę instalacji hydraulicznej oraz elektrycznej. Prace objęły również gruntowną przebudowę układu funkcjonalnego, dzięki czemu udało się stworzyć otwartą, jasną przestrzeń łączącą aneks kuchenny z salonem.\nZmieniliśmy nie tylko techniczne zaplecze mieszkania – zadbaliśmy również o każdy detal wykończenia. Ściany, podłogi, sufity – wszystko zostało odświeżone i dopasowane do nowej aranżacji. Efekt? Nowoczesne, komfortowe i estetyczne wnętrze gotowe do zamieszkania.\nTen projekt to przykład tego, jak kompleksowy remont może całkowicie odmienić charakter mieszkania i znacząco podnieść jego funkcjonalność oraz wartość.",
+    "year": "2024",
+    "location": "Warszawa, Mokotów",
+    "photos": [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg"
+    ]
+  },
+  {
+    "id": "praga_mieszkanie",
+    "title": "Mieszkanie Praga",
+    "content": "Ten projekt to pełna metamorfoza mieszkania o powierzchni 54 m2– od wymiany instalacji elektrycznej i hydraulicznej, przez przebudowę układu pomieszczeń, aż po kompleksowe wykończenie wnętrz. Dzięki zastosowaniu jasnych barw oraz ciepłej, naturalnej palety kolorystycznej, udało się stworzyć przestrzeń, która emanuje spokojem i domowym klimatem.\nPołączenie aneksu kuchennego z salonem otworzyło wnętrze i wprowadziło więcej światła dziennego. Wnętrze zostało zaprojektowane tak, by było nie tylko estetyczne, ale przede wszystkim wygodne w codziennym użytkowaniu.\nTo mieszkanie to przykład na to, jak gruntowny remont, przeprowadzony z dbałością o szczegóły, może całkowicie odmienić atmosferę wnętrza i nadać mu nowoczesny, a zarazem przytulny charakter.",
+    "year": "2024",
+    "location": "Warszawa, Praga",
+    "photos": [
+      "1.JPG",
+      "2.jpg",
+      "3.JPG",
+      "4.jpg"
+    ]
+  },
+  {
+    "id": "raszyn",
+    "title": "Dom jednorodzinny - renowacja",
+    "content": "Kompleksowa renowacja domu jednorodzinnego w Raszynie. Projekt obejmował modernizację całego budynku, w tym wymianę instalacji elektrycznej i hydraulicznej, docieplenie ścian i dachu, wymianę okien oraz remont wnętrz. Wykonano również modernizację ogrodu i garażu.",
+    "year": "2020",
+    "location": "Raszyn, Warszawa",
+    "photos": [
+      "47b84a53-dbae-4545-a5bc-83fe6bc85652.jpg",
+      "71ab02da-0eb9-478c-8493-e18cf8a19338.jpg",
+      "72e8619a-b121-492e-acb2-591b37539adb.jpg",
+      "e066660d-1de8-4329-a47c-b8bcb5996a69.jpg",
+      "e8b03d50-34e6-4031-bc4f-102627fc6111.jpg",
+      "f3ff8e40-cb8d-46a7-b4e0-f7def81a683a.jpg",
+      "image1-scaled.jpeg",
+      "image2-scaled.jpeg",
+      "image3-scaled.jpeg",
+      "image5-scaled.jpeg"
+    ]
+  },
+  {
+    "id": "raszyn_rondo",
+    "title": "Budynek komercyjny",
+    "content": "Budowa budynku komercyjnego przy Rondzie Raszyn. Projekt obejmował budowę obiektu o powierzchni użytkowej 1200m² z parkingiem podziemnym. Budynek został zaprojektowany zgodnie z najnowszymi standardami energooszczędności.",
+    "year": "2014",
+    "location": "Raszyn, Warszawa",
+    "photos": [
+      "1.jpg",
+      "2013-02-16-431-scaled.jpg",
+      "2013-02-16-433-scaled.jpg",
+      "2014-01-24-1151-scaled.jpg",
+      "2014-01-24-1155-scaled.jpg"
+    ]
+  },
+  {
+    "id": "warszawa_pyry",
+    "title": "Dom jednorodzinny w Pyrach",
+    "content": "Kompleksowa budowa nowoczesnego domu jednorodzinnego w Pyrach. Projekt obejmował budowę domu o powierzchni 180m² z garażem i ogrodem. Realizacja została wykonana zgodnie z najnowszymi trendami w budownictwie jednorodzinnym, z wykorzystaniem energooszczędnych rozwiązań i wysokiej jakości materiałów.",
+    "year": "2015",
+    "location": "Pyry, Warszawa",
+    "photos": [
+      "IMG_4346-scaled.jpg",
+      "IMG_4347-scaled.jpg",
+      "IMG_4351-scaled.jpg",
+      "IMG_4359-scaled.jpg",
+      "IMG_4362-scaled.jpg",
+      "IMG_4363-scaled.jpg",
+      "IMG_4366-scaled.jpg",
+      "IMG_4368-scaled.jpg",
+      "IMG_4369-scaled.jpg",
+      "IMG_4373-scaled.jpg"
+    ]
+  },
+  {
+    "id": "wilanow",
+    "title": "Dom jednorodzinny w Wilanowie",
+    "content": "Kompleksowa budowa nowoczesnego domu jednorodzinnego w prestiżowej lokalizacji w Wilanowie. Projekt obejmował budowę domu o powierzchni 250m² z garażem i ogrodem.",
+    "year": "2023",
+    "location": "Wilanów, Warszawa",
+    "photos": [
+      "IMG_20211026_133402-scaled.jpg",
+      "IMG_20211026_133435-scaled.jpg",
+      "IMG_20220426_154820-scaled.jpg",
+      "IMG_20220908_134012-scaled.jpg",
+      "IMG_20230221_094150-scaled.jpg",
+      "IMG_20230823_184837-scaled-e1733581543986.jpg",
+      "IMG_3596-1-scaled-e1713893980220.jpg",
+      "IMG_3596-scaled-e1713893662360.jpg"
+    ]
+  },
+  {
+    "id": "zabia_wola",
+    "title": "Dom jednorodzinny w Żabiej Woli",
+    "content": "Kompleksowa budowa nowoczesnego domu jednorodzinnego w Żabiej Woli. Projekt obejmował budowę domu o powierzchni 200m² z garażem i ogrodem. Realizacja została wykonana zgodnie z najnowszymi trendami w budownictwie jednorodzinnym, z wykorzystaniem energooszczędnych rozwiązań i wysokiej jakości materiałów. Dom został zaprojektowany z myślą o komforcie i funkcjonalności dla całej rodziny.",
+    "year": "2021",
+    "location": "Żabia Wola, Warszawa",
+    "photos": [
+      "IMG_20231004_151953-scaled.jpg",
+      "IMG_20231017_135539-scaled.jpg",
+      "IMG_20231023_102951-scaled.jpg"
+    ]
+  }
+]

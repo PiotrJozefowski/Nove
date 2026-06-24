@@ -1,0 +1,30 @@
+name: Deploy strony Nove na cyber-folks (SFTP, statycznie)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'public/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+
+      - name: Wyślij pliki na hosting (SFTP)
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server:   s73.cyber-folks.pl
+          # UWAGA: przy przeniesieniu Nove na osobne konto zmień username/server
+          # oraz sekret FTP_PASSWORD na dane nowego konta.
+          username: kkegnbcqco
+          password: ${{ secrets.FTP_PASSWORD }}    # ustaw w SEKRETACH TEGO repo
+          port:     222
+          local_path: './public/*'
+          remote_path: 'domains/nove-uslugi-budowlane.pl/public_html'
+          sftp_only: true
+          delete_remote_files: false

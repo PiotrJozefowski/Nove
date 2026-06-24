@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Wysyłanie danych na serwer
-                const response = await fetch('/kontakt', {
+                const response = await fetch('/contact.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
