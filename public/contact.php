@@ -1,8 +1,7 @@
 <?php
 // Nove — obsługa formularza kontaktowego (cyber-folks / PHP).
 // Zastępuje dawny endpoint POST /kontakt z aplikacji node.
-// TODO: ustaw prawdziwy adres odbiorcy:
-$recipient = 'kontakt@nove-uslugi-budowlane.pl';
+$recipient = 'biuro@nove-uslugi-budowlane.pl';
 
 header('Content-Type: application/json; charset=UTF-8');
 

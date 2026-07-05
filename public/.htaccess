@@ -7,17 +7,10 @@ RewriteEngine On
 # Ukryj pliki danych realizacji (Title/Content/Year/Location.txt)
 RewriteRule ^realizacje/[^/]+/(Title|Content|Year|Location)\.txt$ - [F,L]
 
-# Czyste adresy stron (bez .html)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# Czyste adresy stron (bez .html).
+# Reguły dokładne (^...$) mają pierwszeństwo — działają też dla katalogu 'realizacje'.
 RewriteRule ^realizacje/?$ realizacje.html [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ogrodzenia/?$ ogrodzenia.html [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^kontakt/?$ kontakt.html [L]
 
 # Świeży HTML, długi cache dla zasobów wersjonowanych
